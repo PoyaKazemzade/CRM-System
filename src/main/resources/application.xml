@@ -2,7 +2,6 @@
             "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
 
 <beans>
-
 	<!-- add your bean definitions here! -->
-
+	<bean id="customerManagementService" class="com.yrgo.services.customers.CustomerManagementMockImpl"/>
 </beans>

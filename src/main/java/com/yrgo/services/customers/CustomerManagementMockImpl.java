@@ -7,63 +7,79 @@ import com.yrgo.domain.Call;
 import com.yrgo.domain.Customer;
 
 public class CustomerManagementMockImpl implements CustomerManagementService {
-	private HashMap<String,Customer> customerMap;
 
-	public CustomerManagementMockImpl() {
-		customerMap = new HashMap<String,Customer>();
-		customerMap.put("OB74", new Customer("OB74" ,"Fargo Ltd", "some notes"));
-		customerMap.put("NV10", new Customer("NV10" ,"North Ltd", "some other notes"));
-		customerMap.put("RM210", new Customer("RM210" ,"River Ltd", "some more notes"));
-	}
+    private HashMap<String, Customer> customerMap;
 
-
-	@Override
-	public void newCustomer(Customer newCustomer) {
-
-	}
-
-	@Override
-	public void updateCustomer(Customer changedCustomer) {
+    public CustomerManagementMockImpl() {
+        customerMap = new HashMap<String, Customer>();
+        customerMap.put("OB74", new Customer("OB74", "Fargo Ltd", "some notes"));
+        customerMap.put("NV10", new Customer("NV10", "North Ltd", "some other notes"));
+        customerMap.put("RM210", new Customer("RM210", "River Ltd", "some more notes"));
+    }
 
 
-	}
+    @Override
+    public void newCustomer(Customer newCustomer) {
+        if (!customerMap.containsKey(newCustomer.getCustomerId()))
+            customerMap.put(newCustomer.getCustomerId(), newCustomer);
 
-	@Override
-	public void deleteCustomer(Customer oldCustomer) {
-		// TODO Auto-generated method stub
+    }
 
-	}
+    @Override
+    public void updateCustomer(Customer changedCustomer) {
+        if (customerMap.containsKey(changedCustomer.getCustomerId()))
+            customerMap.replace(changedCustomer.getCustomerId(), changedCustomer);
 
-	@Override
-	public Customer findCustomerById(String customerId) throws CustomerNotFoundException {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    }
 
-	@Override
-	public List<Customer> findCustomersByName(String name) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    @Override
+    public void deleteCustomer(Customer oldCustomer) {
+        customerMap.remove(oldCustomer.getCustomerId());
+    }
 
-	@Override
-	public List<Customer> getAllCustomers() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    @Override
+    public Customer findCustomerById(String customerId) throws CustomerNotFoundException {
 
-	@Override
-	public Customer getFullCustomerDetail(String customerId) throws CustomerNotFoundException {
-		// TODO Auto-generated method stub
-		return null;
-	}
+        if (!customerMap.containsKey(customerId))
+            throw new CustomerNotFoundException();
 
-	@Override
-	public void recordCall(String customerId, Call callDetails) throws CustomerNotFoundException {
-		//First find the customer
+        return customerMap.get(customerId);
+    }
 
-		//Call the addCall on the customer
+    @Override
+    public List<Customer> findCustomersByName(String name) {
+        return customerMap.values().stream().filter(x -> x.getCompanyName().equalsIgnoreCase(name)).toList();
+    }
 
-	}
+    @Override
+    public List<Customer> getAllCustomers() {
+        return customerMap.values().stream().toList();
+    }
+
+    @Override
+    public Customer getFullCustomerDetail(String customerId) throws CustomerNotFoundException {
+
+        if (!customerMap.containsKey(customerId))
+            throw new CustomerNotFoundException();
+
+        var customer = customerMap.get(customerId);
+
+        return new Customer(customer.getCustomerId(), customer.getCompanyName(),
+                customer.getEmail(), customer.getTelephone(), customer.getNotes());
+    }
+
+    @Override
+    public void recordCall(String customerId, Call callDetails) throws CustomerNotFoundException {
+        if (!customerMap.containsKey(customerId))
+            throw new CustomerNotFoundException();
+
+        if (callDetails == null)
+            throw new NullPointerException("Call details are missing!");
+        //First find the customer
+        var customer = customerMap.get(customerId);
+        //Call the addCall on the customer
+        customer.addCall(callDetails);
+
+    }
 
 }
