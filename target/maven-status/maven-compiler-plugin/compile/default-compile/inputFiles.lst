@@ -1,0 +1,17 @@
+/Users/poya/javaEnterprise/server_programming_del2/CRM System/src/main/java/com/yrgo/dataaccess/CustomerDaoJdbcImpl.java
+/Users/poya/javaEnterprise/server_programming_del2/CRM System/src/main/java/com/yrgo/services/diary/DiaryManagementService.java
+/Users/poya/javaEnterprise/server_programming_del2/CRM System/src/main/java/com/yrgo/client/SimpleClient.java
+/Users/poya/javaEnterprise/server_programming_del2/CRM System/src/main/java/com/yrgo/dataaccess/ActionDaoJdbcImpl.java
+/Users/poya/javaEnterprise/server_programming_del2/CRM System/src/main/java/com/yrgo/services/calls/CallHandlingServiceImpl.java
+/Users/poya/javaEnterprise/server_programming_del2/CRM System/src/main/java/com/yrgo/services/customers/CustomerNotFoundException.java
+/Users/poya/javaEnterprise/server_programming_del2/CRM System/src/main/java/com/yrgo/services/customers/CustomerManagementService.java
+/Users/poya/javaEnterprise/server_programming_del2/CRM System/src/main/java/com/yrgo/services/diary/DiaryManagementServiceMockImpl.java
+/Users/poya/javaEnterprise/server_programming_del2/CRM System/src/main/java/com/yrgo/domain/Customer.java
+/Users/poya/javaEnterprise/server_programming_del2/CRM System/src/main/java/com/yrgo/services/customers/CustomerManagementServiceProductionImpl.java
+/Users/poya/javaEnterprise/server_programming_del2/CRM System/src/main/java/com/yrgo/dataaccess/CustomerDao.java
+/Users/poya/javaEnterprise/server_programming_del2/CRM System/src/main/java/com/yrgo/domain/Call.java
+/Users/poya/javaEnterprise/server_programming_del2/CRM System/src/main/java/com/yrgo/services/customers/CustomerManagementMockImpl.java
+/Users/poya/javaEnterprise/server_programming_del2/CRM System/src/main/java/com/yrgo/dataaccess/ActionDao.java
+/Users/poya/javaEnterprise/server_programming_del2/CRM System/src/main/java/com/yrgo/services/calls/CallHandlingService.java
+/Users/poya/javaEnterprise/server_programming_del2/CRM System/src/main/java/com/yrgo/dataaccess/RecordNotFoundException.java
+/Users/poya/javaEnterprise/server_programming_del2/CRM System/src/main/java/com/yrgo/domain/Action.java
