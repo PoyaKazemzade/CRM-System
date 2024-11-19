@@ -2,7 +2,9 @@ package com.yrgo.advice;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
+import org.springframework.stereotype.Component;
 
+@Component
 public class PerformanceTimingAdvice {
 
     //before
