@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.yrgo.TestActions" time="0.036" tests="2" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.yrgo.integrationtests.CustomerManagementIntegrationTest" time="1.157" tests="2" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="21"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
@@ -58,6 +58,38 @@
     <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="java.class.version" value="65.0"/>
   </properties>
-  <testcase name="pastActionsAreOverdue" classname="com.yrgo.TestActions" time="0.026"/>
-  <testcase name="futureActionsAreNotOverdue" classname="com.yrgo.TestActions" time="0.001"/>
+  <testcase name="testCreatingNewCustomer" classname="com.yrgo.integrationtests.CustomerManagementIntegrationTest" time="0.086">
+    <system-out><![CDATA[Hibernate: drop table if exists Action CASCADE 
+Hibernate: drop table if exists Customer CASCADE 
+Hibernate: drop table if exists Customer_TBL_CALL CASCADE 
+Hibernate: drop table if exists TBL_CALL CASCADE 
+Hibernate: drop sequence hibernate_sequence if exists
+Hibernate: create sequence hibernate_sequence start with 1 increment by 1
+Hibernate: create table Action (actionId integer not null, complete boolean not null, details varchar(255), owningUser varchar(255), requiredBy timestamp, primary key (actionId))
+Hibernate: create table Customer (customerId varchar(255) not null, companyName varchar(255), email varchar(255), notes varchar(255), telephone varchar(255), primary key (customerId))
+Hibernate: create table Customer_TBL_CALL (Customer_customerId varchar(255) not null, calls_id integer not null)
+Hibernate: create table TBL_CALL (id integer not null, notes varchar(255), timeAndDate timestamp, primary key (id))
+Hibernate: alter table Customer_TBL_CALL add constraint UK_klici3tapu1wnmase4vwypfc4 unique (calls_id)
+Hibernate: alter table Customer_TBL_CALL add constraint FKcp9vxb18jnb84qqhht8yw6qgt foreign key (calls_id) references TBL_CALL
+Hibernate: alter table Customer_TBL_CALL add constraint FKd2jiq43djxj5qjwo01ilaaqoq foreign key (Customer_customerId) references Customer
+Time taken for the method createfrom the class com.yrgo.dataaccess.CustomerDaoJpaImpl took 8ms
+Time taken for the method newCustomerfrom the class com.yrgo.services.customers.CustomerManagementServiceProductionImpl took 10ms
+Hibernate: insert into Customer (companyName, email, notes, telephone, customerId) values (?, ?, ?, ?, ?)
+Time taken for the method createfrom the class com.yrgo.dataaccess.CustomerDaoJpaImpl took 0ms
+Time taken for the method newCustomerfrom the class com.yrgo.services.customers.CustomerManagementServiceProductionImpl took 0ms
+Hibernate: insert into Customer (companyName, email, notes, telephone, customerId) values (?, ?, ?, ?, ?)
+Hibernate: select customer0_.customerId as customer1_1_, customer0_.companyName as companyn2_1_, customer0_.email as email3_1_, customer0_.notes as notes4_1_, customer0_.telephone as telephon5_1_ from Customer customer0_
+Time taken for the method getAllCustomersfrom the class com.yrgo.dataaccess.CustomerDaoJpaImpl took 35ms
+Time taken for the method getAllCustomersfrom the class com.yrgo.services.customers.CustomerManagementServiceProductionImpl took 35ms
+]]></system-out>
+  </testcase>
+  <testcase name="testFindingExistingCustomer" classname="com.yrgo.integrationtests.CustomerManagementIntegrationTest" time="0.007">
+    <system-out><![CDATA[Time taken for the method createfrom the class com.yrgo.dataaccess.CustomerDaoJpaImpl took 0ms
+Time taken for the method newCustomerfrom the class com.yrgo.services.customers.CustomerManagementServiceProductionImpl took 0ms
+Hibernate: insert into Customer (companyName, email, notes, telephone, customerId) values (?, ?, ?, ?, ?)
+Hibernate: select customer0_.customerId as customer1_1_, customer0_.companyName as companyn2_1_, customer0_.email as email3_1_, customer0_.notes as notes4_1_, customer0_.telephone as telephon5_1_ from Customer customer0_ where customer0_.customerId=?
+Time taken for the method getByIdfrom the class com.yrgo.dataaccess.CustomerDaoJpaImpl took 3ms
+Time taken for the method findCustomerByIdfrom the class com.yrgo.services.customers.CustomerManagementServiceProductionImpl took 4ms
+]]></system-out>
+  </testcase>
 </testsuite>
